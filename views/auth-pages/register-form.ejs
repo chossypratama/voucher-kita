@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header') %>
+
+  <body>
+
+    <div class="container mt-5">
+
+      <div class="text-center fs-1 mb-3">
+        Halo! Registrasi dulu ya!
+      </div>
+
+      <form action="/register" method="post">
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Username</label>
+          <input type="text" class="form-control" name="username" required>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Email</label>
+          <input type="text" class="form-control" name="email" placeholder="example@gmail.com" required>
+          <small class="text-muted">*Required</small>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Password</label>
+          <input type="text" class="form-control" name="password" required>
+          <small class="text-muted">*Required</small>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Phone Number</label>
+          <input type="text" class="form-control" name="phoneNumber" placeholder="08xxxxxxxxxxx">
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Role</label>
+          <select class="form-control" name="role">
+            <option class="grey-text" selected disabled>---Please select your register role---</option>
+            <option value="buyer">As Buyer</option>
+            <option value="seller">As Seller</option>
+          </select>
+          <small class="text-muted">*Required</small>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Gender</label>
+          <select class="form-control" name="gender">
+            <option selected disabled>---Please select your gender---</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Age</label>
+          <input type="number" class="form-control" name="age">
+        </div>
+        <!-- form image upload -->
+
+        <button class="btn btn-primary" type="submit">Daftar</button>
+      </form>
+    </div>
+
+  </body>
+
+</html>
