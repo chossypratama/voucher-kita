@@ -1,0 +1,28 @@
+{
+  "name": "pair-programming",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chossypratama/pair-programming.git"
+  },
+  "author": "Chossy Pratama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chossypratama/pair-programming/issues"
+  },
+  "homepage": "https://github.com/chossypratama/pair-programming#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "pg": "^8.8.0",
+    "sequelize": "^6.21.6"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
+  }
+}
