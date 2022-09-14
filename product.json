@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Flavouring - Orange",
+    "description": "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",
+    "price": "5000",
+    "stock": 55,
+    "CategoryId": 3,
+    "UserId": 4
+  },
+  {
+    "name": "Glaze - Apricot",
+    "description": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
+    "price": "75000",
+    "stock": 71,
+    "CategoryId": 1,
+    "UserId": 3
+  },
+  {
+    "name": "V8 - Vegetable Cocktail",
+    "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum.",
+    "price": "10000",
+    "stock": 17,
+    "CategoryId": 3,
+    "UserId": 3
+  },
+  {
+    "name": "Napkin White - Starched",
+    "description": "In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh.",
+    "price": "10000",
+    "stock": 53,
+    "CategoryId": 2,
+    "UserId": 4
+  },
+  {
+    "name": "Mushrooms - Honey",
+    "description": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
+    "price": "100000",
+    "stock": 93,
+    "CategoryId": 1,
+    "UserId": 1
+  },
+  {
+    "name": "Table Cloth 54x72 White",
+    "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.",
+    "price": "50000",
+    "stock": 54,
+    "CategoryId": 3,
+    "UserId": 4
+  },
+  {
+    "name": "Olive - Spread Tapenade",
+    "description": "Proin interdum mauris non ligula pellentesque ultrices.",
+    "price": "150000",
+    "stock": 52,
+    "CategoryId": 2,
+    "UserId": 3
+  },
+  {
+    "name": "Beans - Kidney White",
+    "description": "Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "price": "200000",
+    "stock": 63,
+    "CategoryId": 1,
+    "UserId": 5
+  },
+  {
+    "name": "Mushroom - Trumpet, Dry",
+    "description": "Vivamus tortor. Duis mattis egestas metus.",
+    "price": "50000",
+    "stock": 78,
+    "CategoryId": 2,
+    "UserId": 4
+  },
+  {
+    "name": "Munchies Honey Sweet Trail Mix",
+    "description": "Nullam porttitor lacus at turpis.",
+    "price": "15000",
+    "stock": 67,
+    "CategoryId": 3,
+    "UserId": 5
+  }
+]
