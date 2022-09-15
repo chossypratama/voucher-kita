@@ -1,7 +1,6 @@
 {
   "development": {
     "username": "postgres",
-    "password": "postgres",
     "password": "KotaBandung",
     "database": "VoucherKitaDB",
     "host": "localhost",
