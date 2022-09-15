@@ -39,7 +39,7 @@ app.use(auth)
 // Middleware validate user login and role
 app.use(isLogin)
 // router berhubungan dengan pembeli/buyer
-
+app.get('/profile',UserControllers.profile)
 // Buy product
 app.use('/buy/:productId', Controller.buyProduct)
 
@@ -49,7 +49,7 @@ app.get('/logout', UserControllers.getLogout)
 // Middleware validate role = seller
 app.use(isSeller)
 // route berhubungan dengan penjual/seller
-app.get('/profile',UserControllers.profile)
+
 
 // Seller Product Controller
 app.use(product)

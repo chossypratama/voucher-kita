@@ -58,6 +58,7 @@
                 <!-- <p class="card-text text-wrap">
                   <%= element.description %>
                 </p> -->
+                <p class="card-subtitle mb-2 fs-4" style="color: orange;"><%= element.priceRupiah %></p>
                 <p class="card-subtitle mb-2 text-muted">Stok Total: Sisa <%= element.stock %></p>
                 <div class="d-flex justify-content-between align-items-center">
                   <% if(userSession?.role != 'seller') {%> 

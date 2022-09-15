@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Product.belongsTo(models.User, { foreignKey: "UserId" });
     }
 
-    priceRupiah() {
+    get priceRupiah() {
       return toRupiah(this.price);
     }
 
