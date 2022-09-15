@@ -225,7 +225,7 @@ class Controller {
     let option = {
       include: [User, Category],
       where: {
-        UserId: +req.params.userId,
+        UserId: +userSession.id,
         stock: {
           [Op.gt]: 0,
         },
