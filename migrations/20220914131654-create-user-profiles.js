@@ -14,9 +14,6 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING,
       },
-      imageUrl: {
-        type: Sequelize.STRING,
-      },
       age: {
         type: Sequelize.INTEGER,
       },
