@@ -3,6 +3,7 @@
     "name": "Flavouring - Orange",
     "description": "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
     "price": "5000",
+    "imageUrl": "http://dummyimage.com/141x100.png/dddddd/000000",
     "stock": 55,
     "CategoryId": 3,
     "UserId": 4
@@ -11,6 +12,7 @@
     "name": "Glaze - Apricot",
     "description": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
     "price": "75000",
+    "imageUrl": "http://dummyimage.com/235x100.png/ff4444/ffffff",
     "stock": 71,
     "CategoryId": 1,
     "UserId": 3
@@ -19,6 +21,7 @@
     "name": "V8 - Vegetable Cocktail",
     "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque",
     "price": "10000",
+    "imageUrl": "http://dummyimage.com/175x100.png/ff4444/ffffff",
     "stock": 17,
     "CategoryId": 3,
     "UserId": 3
@@ -27,6 +30,7 @@
     "name": "Napkin White - Starched",
     "description": "In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh.",
     "price": "10000",
+    "imageUrl": "http://dummyimage.com/163x100.png/dddddd/000000",
     "stock": 53,
     "CategoryId": 2,
     "UserId": 4
@@ -35,6 +39,7 @@
     "name": "Mushrooms - Honey",
     "description": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl",
     "price": "100000",
+    "imageUrl": "http://dummyimage.com/211x100.png/ff4444/ffffff",
     "stock": 93,
     "CategoryId": 1,
     "UserId": 1
@@ -43,6 +48,7 @@
     "name": "Table Cloth 54x72 White",
     "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.",
     "price": "50000",
+    "imageUrl": "http://dummyimage.com/164x100.png/ff4444/ffffff",
     "stock": 54,
     "CategoryId": 3,
     "UserId": 4
@@ -51,6 +57,7 @@
     "name": "Olive - Spread Tapenade",
     "description": "Proin interdum mauris non ligula pellentesque ultrices.",
     "price": "150000",
+    "imageUrl": "http://dummyimage.com/106x100.png/cc0000/ffffff",
     "stock": 52,
     "CategoryId": 2,
     "UserId": 3
@@ -59,6 +66,7 @@
     "name": "Beans - Kidney White",
     "description": "Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
     "price": "200000",
+    "imageUrl": "http://dummyimage.com/216x100.png/cc0000/ffffff",
     "stock": 63,
     "CategoryId": 1,
     "UserId": 5
@@ -67,6 +75,7 @@
     "name": "Mushroom - Trumpet, Dry",
     "description": "Vivamus tortor. Duis mattis egestas metus.",
     "price": "50000",
+    "imageUrl": "http://dummyimage.com/157x100.png/ff4444/ffffff",
     "stock": 78,
     "CategoryId": 2,
     "UserId": 4
@@ -75,6 +84,7 @@
     "name": "Munchies Honey Sweet Trail Mix",
     "description": "Nullam porttitor lacus at turpis.",
     "price": "15000",
+    "imageUrl": "http://dummyimage.com/229x100.png/dddddd/000000",
     "stock": 67,
     "CategoryId": 3,
     "UserId": 5

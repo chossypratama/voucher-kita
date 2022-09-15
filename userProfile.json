@@ -2,70 +2,60 @@
   {
     "gender": "Female",
     "phoneNumber": "409-657-5333",
-    "imageUrl": "http://dummyimage.com/141x100.png/dddddd/000000",
     "age": 30,
     "UserId": 1
   },
   {
     "gender": "Female",
     "phoneNumber": "125-882-7995",
-    "imageUrl": "http://dummyimage.com/235x100.png/ff4444/ffffff",
     "age": 34,
     "UserId": 2
   },
   {
     "gender": "Male",
     "phoneNumber": "931-364-9212",
-    "imageUrl": "http://dummyimage.com/175x100.png/ff4444/ffffff",
     "age": 29,
     "UserId": 3
   },
   {
     "gender": "Male",
     "phoneNumber": "254-543-7039",
-    "imageUrl": "http://dummyimage.com/163x100.png/dddddd/000000",
     "age": 22,
     "UserId": 4
   },
   {
     "gender": "Female",
     "phoneNumber": "548-454-9577",
-    "imageUrl": "http://dummyimage.com/211x100.png/ff4444/ffffff",
     "age": 19,
     "UserId": 5
   },
   {
     "gender": "Female",
     "phoneNumber": "676-121-1753",
-    "imageUrl": "http://dummyimage.com/164x100.png/ff4444/ffffff",
     "age": 32,
     "UserId": 6
   },
   {
     "gender": "Male",
     "phoneNumber": "289-422-1265",
-    "imageUrl": "http://dummyimage.com/106x100.png/cc0000/ffffff",
     "age": 28,
     "UserId": 7
   },
   {
     "gender": "Male",
     "phoneNumber": "534-680-1167",
-    "imageUrl": "http://dummyimage.com/216x100.png/cc0000/ffffff",
     "age": 34,
     "UserId": 8
   },
   {
     "gender": "Female",
     "phoneNumber": "180-826-5385",
-    "imageUrl": "http://dummyimage.com/157x100.png/ff4444/ffffff",
     "age": 29,
     "UserId": 9
   },
   {
     "gender": "Female",
     "phoneNumber": "533-632-9907",
-    "imageUrl": "http://dummyimage.com/229x100.png/dddddd/000000",
     "age": 32,
     "UserId": 10
   }
