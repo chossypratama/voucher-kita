@@ -68,6 +68,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'User',
     }
+    
   )
   User.addHook('beforeCreate', (user) => {
     user.password = user.hashing(user.password)
