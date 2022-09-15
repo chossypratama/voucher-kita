@@ -17,7 +17,7 @@ class Controller {
   }
 
   static formAdd(req, res) {
-    // const { errors } = req.query;
+    const { errors } = req.query;
     const userSession = req.session.user;
     Category.findAll()
       .then((result) => {
@@ -25,6 +25,7 @@ class Controller {
         res.render("formAddProduct", {
           categories: result,
           userSession,
+          errors
         });
       })
       .catch((err) => {
@@ -50,13 +51,13 @@ class Controller {
         res.redirect(`/product/${UserId}`);
       })
       .catch((err) => {
-        // if (err.name == "SequelizeValidationError") {
-        //   err = err.errors.map((el) => el.message);
-        //   // res.redirect(`/product/${userSession.id}/add?errors=${err}`);
-        //   res.send(err);
-        // } else {
+        if (err.name == "SequelizeValidationError") {
+          err = err.errors.map((el) => el.message);
+          res.redirect(`/product/${userSession.id}/add?errors=${err}`);
+          // res.send(err);
+        } else {
         res.send(err);
-        // }
+        }
       });
   }
 
