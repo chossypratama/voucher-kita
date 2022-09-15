@@ -1,7 +1,6 @@
-
-
 const express = require('express')
 const session = require('express-session')
+
 const Controller = require('./controllers/ProductControllers')
 const UserControllers = require('./controllers/UserController')
 const { isLogin, isSeller } = require('./middlewares/auth')
@@ -10,7 +9,6 @@ const product = require('./routes/product')
 
 const app = express()
 const port = 3000
-
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
@@ -50,7 +48,6 @@ app.use(isSeller)
 
 // Seller Product Controller
 app.use(product)
-
 
 app.listen(port, () => {
   console.log(`Listening to http://localhost:${port}`)

@@ -73,27 +73,27 @@ class Controller {
     const { name, description, price, imageUrl, stock, CategoryId } = req.body;
     let UserId = req.params.userId;
 
-    Product.create({
-      name,
-      description,
-      price,
-      imageUrl,
-      stock,
-      CategoryId,
-      UserId,
-    })
-      .then(() => {
-        res.redirect(`/product/${UserId}`);
-      })
-      .catch((err) => {
-        if (err.name == "SequelizeValidationError") {
-          err = err.errors.map((el) => el.message);
-          res.redirect(`/product/${userSession.id}/add?errors=${err}`);
-          // res.send(err);
-        } else {
-        res.send(err);
-        }
-      });
+    // Product.create({
+    //   name,
+    //   description,
+    //   price,
+    //   imageUrl,
+    //   stock,
+    //   CategoryId,
+    //   UserId,
+    // })
+    //   .then(() => {
+    //     res.redirect(`/product/${UserId}`);
+    //   })
+    //   .catch((err) => {
+    //     if (err.name == "SequelizeValidationError") {
+    //       err = err.errors.map((el) => el.message);
+    //       res.redirect(`/product/${userSession.id}/add?errors=${err}`);
+    //       // res.send(err);
+    //     } else {
+    //     res.send(err);
+    //     }
+    //   });
   }
 
   static listProduct(req, res) {
