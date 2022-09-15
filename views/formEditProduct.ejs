@@ -5,10 +5,17 @@
 
     <%- include('components/header', { userSession:userSession }) %>
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
       <div class="text-center fs-1 mb-3">EDIT YOUR PRODUCT</div>
 
-      <form action="/product/<%= userSession.id %>/edit/<%= product.id %>" method="post">
+      <% if (errors) { %>
+        <div class="alert alert-danger"> <% errors.split(',').forEach(el=>{%>
+          <li><%= el %> </li>
+          <%}) %>
+        </div>
+      <% } %>
+
+      <form action="/product/<%= userSession.id %>/edit/<%= product.id %>" enctype="multipart/form-data" method="post">
         <div class="mb-3 form-group">
           <label for="" class="form-label">Product Name</label>
           <input
@@ -29,8 +36,10 @@
          
         </div>
         <div class="mb-3 form-group">
-          <label for="" class="form-label">Image Url</label>
-          <input type="text" class="form-control" name="imageUrl" value="<%= product.imageUrl %>" />
+          <label for="" class="form-label">Current Image</label><br>
+          <img src="/<%= product.imageUrl %>" class="img-thumbnail" width="200" alt="<%= product.imageUrl %>"><br><br>
+          <label for="" class="form-label">New Image</label><br>
+          <input type="file" class="form-control" name="imageUrl" />
         </div>
         <div class="mb-3 form-group">
           <label for="" class="form-label">Stock</label>

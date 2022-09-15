@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session')
+const path = require('path')
 
 const Controller = require('./controllers/ProductControllers')
 const UserControllers = require('./controllers/UserController')
@@ -25,6 +26,9 @@ app.use(
     },
   })
 )
+
+// Middleware static file access
+app.use('/images', express.static(path.join(__dirname, 'images')))
 
 // Main landing page
 app.get('/', Controller.home)
