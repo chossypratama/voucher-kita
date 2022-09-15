@@ -31,9 +31,9 @@ class UserController {
   }
 
   static loginForm(req, res) {
-    const { invalid, afterRegister } = req.query
+    const { invalid, afterRegister, sessionNotFound } = req.query
 
-    res.render('auth-pages/login-form.ejs', { invalid, afterRegister })
+    res.render('auth-pages/login-form.ejs', { invalid, afterRegister, sessionNotFound })
   }
 
   static postLogin(req, res) {
@@ -43,12 +43,14 @@ class UserController {
         const isValid = bcrypt.compareSync(password, user.password)
 
         if (isValid) {
+          // assign to session
+          req.session.userId = user.id
+
           return res.redirect('/')
         } else {
           return res.redirect('/login?invalid=true')
         }
-        
-      }else{
+      } else {
         return res.redirect('/login?invalid=true')
       }
     })

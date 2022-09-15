@@ -22,6 +22,12 @@
         </div>
       <% } %>
 
+      <% if(sessionNotFound) { %>
+        <div class="text-center alert alert-warning"> 
+          Silahkan login sebelum melanjutkan!
+        </div>
+      <% } %>
+
       <form action="/login" method="post">
         <div class="mb-3 form-group">
           <label for="" class="form-label">Email</label>
