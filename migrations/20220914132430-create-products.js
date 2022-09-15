@@ -20,6 +20,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      imageUrl: {
+        type: Sequelize.STRING,
+        allowNull:false
+      },
       stock: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
