@@ -3,6 +3,8 @@
 const express = require('express')
 const session = require('express-session')
 const Controller = require('./controllers/ProductControllers')
+const UserControllers = require('./controllers/UserController')
+const { isLogin, isSeller } = require('./middlewares/auth')
 const auth = require('./routes/auth')
 const product = require('./routes/product')
 
@@ -27,19 +29,23 @@ app.use(
 )
 
 // Main landing page
-app.get('/', Controller.findAllProducts)
+app.get('/', Controller.home)
 
 // Auth Router
 app.use(auth)
 
 // Middleware validate user login and role
-app.use((req, res, next) => {
-  if (!req.session.userId) {
-    res.redirect('/login?sessionNotFound=true')
-  } else {
-    next()
-  }
-})
+app.use(isLogin)
+// router berhubungan dengan pembeli/buyer
+
+// buy product
+
+
+app.get('/logout', UserControllers.getLogout)
+
+// Middleware validate role = seller
+app.use(isSeller)
+// route berhubungan dengan penjual/seller
 
 // Seller Product Controller
 app.use(product)
