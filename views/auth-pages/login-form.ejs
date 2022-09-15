@@ -6,11 +6,13 @@
     <div class="container mt-5">
       <% if(afterRegister) { %>
       <div class="text-center fs-1 mb-3">
-        Anda telah terdaftar! Silahkan login sekarang!
+        Anda telah terdaftar! Silahkan login untuk melanjutkan.
       </div>
       <% }else{ %>
       <div class="text-center fs-1 mb-3">Hai! Selamat Datang Kembali!</div>
-      <% } %> <% if(invalid) { %>
+      <% } %> 
+      
+      <% if(invalid) { %>
       <div class="text-center alert alert-danger">
         Email/Password salah silahkan coba lagi
       </div>
@@ -21,6 +23,10 @@
           Silahkan login sebelum melanjutkan!
         </div>
       <% } %>
+
+      <div class="alert alert-info"> 
+        Belum punya akun? Silahkan Register ke <a href="/register">sini</a>
+      </div>
 
       <form action="/login" method="post">
         <div class="mb-3 form-group">
@@ -36,7 +42,7 @@
         </div>
         <div class="mb-3 form-group">
           <label for="" class="form-label">Password</label>
-          <input type="text" class="form-control" name="password" required />
+          <input type="password" class="form-control" name="password" required />
           <small class="text-muted">*Required</small>
         </div>
 

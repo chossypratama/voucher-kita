@@ -10,19 +10,27 @@
         Halo! Registrasi dulu ya!
       </div>
 
+      <% if(errors) { %>
+        <div class="alert alert-danger">
+          <% errors.split(',').forEach(element => { %>
+           <%= element %><br>
+          <% }) %>
+        </div>
+        <% } %>
+
       <form action="/register" method="post">
         <div class="mb-3 form-group">
           <label for="" class="form-label">Username</label>
-          <input type="text" class="form-control" name="username" required>
+          <input type="text" class="form-control" name="username">
         </div>
         <div class="mb-3 form-group">
           <label for="" class="form-label">Email</label>
-          <input type="text" class="form-control" name="email" placeholder="example@gmail.com" required>
+          <input type="text" class="form-control" name="email" placeholder="example@gmail.com">
           <small class="text-muted">*Required</small>
         </div>
         <div class="mb-3 form-group">
           <label for="" class="form-label">Password</label>
-          <input type="text" class="form-control" name="password" required>
+          <input type="text" class="form-control" name="password">
           <small class="text-muted">*Required</small>
         </div>
         <div class="mb-3 form-group">

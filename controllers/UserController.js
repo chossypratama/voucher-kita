@@ -1,32 +1,43 @@
-const { response } = require('express')
 const { User, UserProfile } = require('../models')
 const bcrypt = require('bcryptjs')
 
 class UserControllers {
   static registerForm(req, res) {
-    res.render('auth-pages/register-form.ejs')
+    const { errors } = req.query
+
+    res.render('auth-pages/register-form.ejs', { errors })
   }
 
   static postRegister(req, res) {
     // create user : username, email, password, role
-    // create userProfile : gender, phoneNumber, imageUrl?, age, UserId (promise dari hasil user)
+    // create userProfile : gender, phoneNumber, age, UserId (promise dari hasil user)
     const { username, email, password, role, gender, phoneNumber, age } = req.body
     User.findOne({ where: { email } })
       .then((existUser) => {
         if (!existUser) {
           return User.create({ username, email, password, role })
         } else {
-          throw '<h3>Email has been exists! Try other email!</h3>'
+          throw `Email sudah ada! Silahkan coba email lain!`
         }
       })
       .then((user) => {
         return UserProfile.create({ gender, phoneNumber, age, UserId: user.id })
       })
-      .then((res) => {
+      .then(() => {
         res.redirect('/login?afterRegister=true')
       })
       .catch((err) => {
-        res.send(err)
+        if (err.name == 'SequelizeValidationError') {
+          const errors = err.errors.map((e) => {
+            return e.message
+          })
+          res.redirect(`/register?errors=${errors}`)
+        } else if (typeof err == 'string') {
+          res.redirect(`/register?errors=${err}`)
+        } else {
+          console.log(JSON.stringify(err))
+          res.send(err)
+        }
       })
   }
 
@@ -38,20 +49,40 @@ class UserControllers {
 
   static postLogin(req, res) {
     const { email, password } = req.body
-    findOne({ where: { email } }).then((user) => {
-      if (user) {
-        const isValid = bcrypt.compareSync(password, user.password)
+    User.findOne({ where: { email } })
+      .then((user) => {
+        if (user) {
+          const isValid = bcrypt.compareSync(password, user.password)
 
-        if (isValid) {
-          // assign to session
-          req.session.userId = user.id
+          if (isValid) {
+            // assign to session
+            req.session.user = {
+              id: user.id,
+              role: user.role,
+              username: user.username,
+            }
+            // console.log(req.session)
 
-          return res.redirect('/')
+            return res.redirect('/')
+          } else {
+            return res.redirect('/login?invalid=true')
+          }
         } else {
           return res.redirect('/login?invalid=true')
         }
+      })
+      .catch((err) => {
+        console.log(err)
+        res.send(err)
+      })
+  }
+
+  static getLogout = (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        res.send(err)
       } else {
-        return res.redirect('/login?invalid=true')
+        res.redirect('/?logout=true')
       }
     })
   }
