@@ -92,6 +92,7 @@ class Controller {
         res.redirect(`/product/${UserId}`)
       })
       .catch((err) => {
+        fs.unlinkSync(path); //rollback picture
         if (err.name == 'SequelizeValidationError') {
           err = err.errors.map((el) => el.message)
           res.redirect(`/product/${userSession.id}/add?errors=${err}`)
@@ -207,6 +208,7 @@ class Controller {
         res.redirect(`/product/${+req.params.userId}`)
       })
       .catch((err) => {
+        fs.unlinkSync(path); //rollback picture
         if (err.name == 'SequelizeValidationError') {
           err = err.errors.map((el) => el.message)
           res.redirect(`/product/${userSession.id}/edit?errors=${err}`)
