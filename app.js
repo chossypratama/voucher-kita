@@ -38,9 +38,10 @@ app.use(auth)
 app.use(isLogin)
 // router berhubungan dengan pembeli/buyer
 
-// buy product
+// Buy product
+app.use('/buy/:productId', Controller.buyProduct)
 
-
+// Logout
 app.get('/logout', UserControllers.getLogout)
 
 // Middleware validate role = seller
