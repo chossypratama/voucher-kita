@@ -5,33 +5,67 @@
   <body>
     <%- include('components/header', { userSession:userSession }) %>
 
+    <% if(isLogout) { %>
+      <div class="text-center alert alert-info"> 
+        Anda berhasil logout!
+      </div>
+    <% } %>
+
+    <% if(boughtProduct) { %>
+      <div class="text-center alert alert-info"> 
+        Terimakasih telah membeli <%= boughtProduct %> !
+      </div>
+    <% } %>
+
     <div class="container mt-5">
+
+      <div class="row">
+      <div> Urutkan: </div>
+      <div class="btn-group mb-3">
+        <a href="/?ob=price&sort=asc" class="btn btn-outline-primary">Harga Tertinggi</a>
+        <a href="/?ob=price&sort=desc" class="btn btn-outline-primary">Harga Terendah</a>
+        <a href="/?ob=createdAt&sort=asc" class="btn btn-outline-primary">Produk Terbaru</a>
+        <a href="/?ob=createdAt&sort=desc" class="btn btn-outline-primary">Produk Terlama</a>
+        <a href="/?ob=stock&sort=desc" class="btn btn-outline-primary">Stok Tertinggi</a>
+        <a href="/?ob=stock&sort=asc" class="btn btn-outline-primary">Stok Terendah</a>
+      </div>
+      </div>
+
       <form action="/" method="get">
-        <div class="d-flex mb-4">
-          <input
-            type="text"
-            name="search"
-            class="form-control"
-            placeholder="Search name/description"
-          />
-          <button class="btn btn-small btn-outline-primary" type="submit">
-            Search
-          </button>
+        <div class="input-group mb-4">
+          <input type="text" name="search" class="form-control" placeholder="Search name/description">
+          <button class="btn btn-small btn-outline-primary" type="submit">Search</button>
         </div>
       </form>
 
+      <% if(products.length == 0) { %>
+        <div class="text-center alert alert-info"> 
+          Produk tidak ditemukan.
+        </div>
+      <% } %> 
+
       <div class="row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3">
         <% products.forEach(element=> { %>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img width="100%" height="225" src=<%=element.imageUrl %>>
 
-            <div class="card-body">
-              <p class="fs-5"><%= element.name %></p>
-              <p class="card-text text-wrap"><%= element.description %></p>
-              <button type="button" class="btn btn-sm btn-outline-secondary">
-                Buy
-              </button>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img width="100%" height="225" src=<%=element.imageUrl %>>
+
+              <div class="card-body">
+                <h6 class="card-title">
+                  <%= element.name %>
+                </h6>
+                <!-- <p class="card-text text-wrap">
+                  <%= element.description %>
+                </p> -->
+                <p class="card-subtitle mb-2 text-muted">Stok Total: Sisa <%= element.stock %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <% if(userSession?.role != 'seller') {%> 
+                    <a href="/buy/<%=element.id %>" type="button" class="btn btn-sm btn-outline-secondary">Buy</a>
+                  <% } %>
+                </div>
+                
+              </div>
             </div>
           </div>
         </div>

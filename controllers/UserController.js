@@ -82,7 +82,7 @@ class UserControllers {
       if (err) {
         res.send(err)
       } else {
-        res.redirect('/?logout=true')
+        res.redirect('/?isLogout=true')
       }
     })
   }

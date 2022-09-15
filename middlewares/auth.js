@@ -7,8 +7,9 @@ const isLogin = (req, res, next) => {
 };
 
 const isSeller = (req, res, next) => {
-  if (req.session.user.role !== "seller") {
-    res.redirect("/");
+  console.log(req.session)
+  if (req.session.user.role != 'seller') {
+    res.redirect('/')
   } else {
     next();
   }
