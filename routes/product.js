@@ -3,7 +3,7 @@ const router = express.Router();
 const ProductController = require("../controllers/ProductControllers");
 
 router.get("/product/:userId", ProductController.listProduct);
-
+router.get("/product/:userId/emptyStock", ProductController.listEmpty);
 router.get("/product/8/add", ProductController.formAdd);
 router.post("/product/:userId/add", ProductController.createProduct);
 router.get(

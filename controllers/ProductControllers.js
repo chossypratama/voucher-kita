@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { User, UserProfile, Product, Category } = require("../models");
 
 class Controller {
@@ -24,7 +25,7 @@ class Controller {
       UserId,
     })
       .then(() => {
-        res.redirect(`/product/${UserId}/add`);
+        res.redirect(`/product/${UserId}`);
       })
       .catch((err) => {
         res.send(err);
@@ -32,14 +33,32 @@ class Controller {
   }
 
   static listProduct(req, res) {
-    Product.findAll({
+    const { search, sortBy } = req.query;
+    let option = {
       include: [User, Category],
       where: {
         UserId: +req.params.userId,
+        stock: {
+          [Op.gt]: 0,
+        },
       },
-    })
+      order: [["updatedAt", "DESC"]],
+    };
+
+    if (sortBy === "price") {
+      option.order = [["price", "DESC"]];
+    } else if (sortBy === "name") {
+      option.order = [["name", "ASC"]];
+    } else if (sortBy === "stock") {
+      option.order = [["stock", "ASC"]];
+    }
+    if (search) {
+      option.where.name = {
+        [Op.iLike]: `%${search}%`,
+      };
+    }
+    Product.findAll(option)
       .then((result) => {
-        // res.send(result);
         res.render("listProduct", { products: result });
       })
       .catch((err) => {
@@ -90,6 +109,33 @@ class Controller {
     )
       .then(() => {
         res.redirect(`/product/${+req.params.userId}`);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  }
+
+  static listEmpty(req, res) {
+    const { search } = req.query;
+    let option = {
+      include: [User, Category],
+      where: {
+        UserId: +req.params.userId,
+        stock: {
+          [Op.gt]: 0,
+        },
+      },
+      order: [["updatedAt", "DESC"]],
+    };
+    option.where = Product.scopeZeroStock();
+    if (search) {
+      option.where.name = {
+        [Op.iLike]: `%${search}%`,
+      };
+    }
+    Product.findAll(option)
+      .then((result) => {
+        res.render("listEmpty", { products: result });
       })
       .catch((err) => {
         res.send(err);

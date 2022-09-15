@@ -1,5 +1,6 @@
-'use strict'
-const { Model } = require('sequelize')
+"use strict";
+const { Model, Op } = require("sequelize");
+const toRupiah = require("../helpers/formatIDR");
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     /**
@@ -9,8 +10,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Product.belongsTo(models.Category, { foreignKey: 'CategoryId' })
-      Product.belongsTo(models.User, { foreignKey: 'UserId' })
+      Product.belongsTo(models.Category, { foreignKey: "CategoryId" });
+      Product.belongsTo(models.User, { foreignKey: "UserId" });
+    }
+
+    priceRupiah() {
+      return toRupiah(this.price);
+    }
+
+    static scopeZeroStock() {
+      return {
+        stock: {
+          [Op.eq]: 0,
+        },
+      };
     }
   }
   Product.init(
@@ -25,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Product',
+      modelName: "Product",
     }
-  )
-  return Product
-}
+  );
+  return Product;
+};
