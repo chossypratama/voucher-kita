@@ -92,7 +92,7 @@ class Controller {
         res.redirect(`/product/${UserId}`)
       })
       .catch((err) => {
-        fs.unlinkSync(path); //rollback picture
+        fs.unlinkSync(path) //rollback picture
         if (err.name == 'SequelizeValidationError') {
           err = err.errors.map((el) => el.message)
           res.redirect(`/product/${userSession.id}/add?errors=${err}`)
@@ -189,29 +189,29 @@ class Controller {
 
   static updateProduct(req, res) {
     const userSession = req.session.user
-    if (!req.file) {
-      const err = 'Image Harus Di Upload'
-      res.redirect(`/product/${userSession.id}/edit?errors=${err}`)
-    }
+    // if (!req.file) {
+    //   const err = 'Image Harus Di Upload'
+    //   res.redirect(`/product/${userSession.id}/edit/${req.params.productId}?errors=${err}`)
+    // }
     const { name, description, price, stock, CategoryId } = req.body
-    const { path } = req.file
+    let option = { name, description, price, stock, CategoryId }
+    if (req?.file?.path) {
+      option = { ...option, imageUrl: req.file.path }
+    }
 
-    Product.update(
-      { name, description, price, imageUrl: path, stock, CategoryId },
-      {
-        where: {
-          id: +req.params.productId,
-        },
-      }
-    )
+    Product.update(option, {
+      where: {
+        id: +req.params.productId,
+      },
+    })
       .then(() => {
         res.redirect(`/product/${+req.params.userId}`)
       })
       .catch((err) => {
-        fs.unlinkSync(path); //rollback picture
+        fs.unlinkSync(req?.file?.path) //rollback picture
         if (err.name == 'SequelizeValidationError') {
           err = err.errors.map((el) => el.message)
-          res.redirect(`/product/${userSession.id}/edit?errors=${err}`)
+          res.redirect(`/product/${userSession.id}/edit/${req.params.productId}?errors=${err}`)
           // res.send(err);
         } else {
           res.send(err)
