@@ -1,12 +1,12 @@
 const multer = require('multer')
 
-const saveImageToDirectory = () => {
+const multerMiddleware = () => {
   const fileStorage = multer.diskStorage({
     destination: (req, file, callback) => {
       callback(null, 'images')
     },
     filename: (req, file, callback) => {
-      callback(null, '')
+      callback(null, new Date().getTime() + '-' + file.originalname)
     },
   })
 
@@ -18,7 +18,7 @@ const saveImageToDirectory = () => {
     }
   }
 
-  return multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
+  return multer({ storage: fileStorage, fileFilter: fileFilter }).single('imageUrl')
 }
 
-module.exports = saveImageToDirectory
+module.exports = multerMiddleware

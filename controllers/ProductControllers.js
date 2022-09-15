@@ -1,6 +1,6 @@
-
 const { Op } = require('sequelize')
 const { User, Product, Category } = require('../models')
+const fs = require('fs')
 
 class Controller {
   static home(req, res) {
@@ -17,12 +17,12 @@ class Controller {
 
     Product.findAll(options)
       .then((products) => {
-        // res.send(products)      
+        // res.send(products)
         res.render('home.ejs', { products, userSession, boughtProduct, isLogout })
       })
       .catch((err) => {
-        res.send(err);
-      });
+        res.send(err)
+      })
   }
 
   static buyProduct(req, res) {
@@ -46,59 +46,67 @@ class Controller {
         .catch((err) => {
           res.send(err)
         })
-    }else{
+    } else {
       res.redirect('/login?sessionNotFound=true')
     }
   }
 
   static formAdd(req, res) {
-    const { errors } = req.query;
-    const userSession = req.session.user;
+    const { errors } = req.query
+    const userSession = req.session.user
     Category.findAll()
       .then((result) => {
         // res.send(userSession);
-        res.render("formAddProduct", {
+        res.render('formAddProduct', {
           categories: result,
           userSession,
-          errors
-        });
+          errors,
+        })
       })
       .catch((err) => {
-        res.send(err);
-      });
+        res.send(err)
+      })
   }
 
   static createProduct(req, res) {
-    const userSession = req.session.user;
-    const { name, description, price, imageUrl, stock, CategoryId } = req.body;
-    let UserId = req.params.userId;
+    if (!req.file) {
+      const err = new Error('Image Harus Di Upload')
+      err.errorStatus = 422
+      throw err
+    }
 
-    // Product.create({
-    //   name,
-    //   description,
-    //   price,
-    //   imageUrl,
-    //   stock,
-    //   CategoryId,
-    //   UserId,
-    // })
-    //   .then(() => {
-    //     res.redirect(`/product/${UserId}`);
-    //   })
-    //   .catch((err) => {
-    //     if (err.name == "SequelizeValidationError") {
-    //       err = err.errors.map((el) => el.message);
-    //       res.redirect(`/product/${userSession.id}/add?errors=${err}`);
-    //       // res.send(err);
-    //     } else {
-    //     res.send(err);
-    //     }
-    //   });
+    const userSession = req.session.user
+    const { name, description, price, stock, CategoryId } = req.body
+    const { path } = req.file
+
+    let UserId = req.params.userId
+
+    Product.create({
+      name,
+      description,
+      price,
+      imageUrl: path,
+      stock,
+      CategoryId,
+      UserId,
+    })
+      .then(() => {
+        res.redirect(`/product/${UserId}`)
+      })
+      .catch((err) => {
+        if (err.name == 'SequelizeValidationError') {
+          err = err.errors.map((el) => el.message)
+          res.redirect(`/product/${userSession.id}/add?errors=${err}`)
+          // res.send(err);
+        } else {
+          res.send(err)
+        }
+      })
   }
 
   static listProduct(req, res) {
-    const userSession = req.session.user;
-    const { search, sortBy } = req.query;
+    const userSession = req.session.user
+    const { search, sortBy } = req.query
 
     let option = {
       include: [User, Category],
@@ -126,7 +134,7 @@ class Controller {
     Product.findAll(option)
       .then((result) => {
         // res.send(userSession);
-        res.render("listProduct", { products: result, userSession });
+        res.render('listProduct', { products: result, userSession })
       })
       .catch((err) => {
         res.send(err)
@@ -134,11 +142,20 @@ class Controller {
   }
 
   static deleteProduct(req, res) {
-    Product.destroy({
-      where: {
-        id: +req.params.productId,
-      },
-    })
+    // delete a file
+    Product.findOne({ where: { id: +req.params.productId } })
+      .then((product) => {
+        return fs.unlink(product.imageUrl, (err) => {
+          if (err) throw err
+        })
+      })
+      .then(() => {
+        return Product.destroy({
+          where: {
+            id: +req.params.productId,
+          },
+        })
+      })
       .then(() => {
         res.redirect(`/product/${+req.params.userId}`)
       })
@@ -148,8 +165,9 @@ class Controller {
   }
 
   static formEditProduct(req, res) {
-    const userSession = req.session.user;
-    let product;
+    const { errors } = req.query
+    const userSession = req.session.user
+    let product
     Product.findByPk(+req.params.productId, {
       include: Category,
     })
@@ -158,11 +176,12 @@ class Controller {
         return Category.findAll()
       })
       .then((result) => {
-        res.render("formEditProduct", {
+        res.render('formEditProduct', {
           category: result,
           product,
           userSession,
-        });
+          errors,
+        })
       })
       .catch((err) => {
         res.send(err)
@@ -170,9 +189,18 @@ class Controller {
   }
 
   static updateProduct(req, res) {
-    const { name, description, price, imageUrl, stock, CategoryId } = req.body
+    if (!req.file) {
+      const err = new Error('Image Harus Di Upload')
+      err.errorStatus = 422
+      throw err
+    }
+
+    const userSession = req.session.user
+    const { name, description, price, stock, CategoryId } = req.body
+    const { path } = req.file
+
     Product.update(
-      { name, description, price, imageUrl, stock, CategoryId },
+      { name, description, price, imageUrl: path, stock, CategoryId },
       {
         where: {
           id: +req.params.productId,
@@ -183,13 +211,19 @@ class Controller {
         res.redirect(`/product/${+req.params.userId}`)
       })
       .catch((err) => {
-        res.send(err)
+        if (err.name == 'SequelizeValidationError') {
+          err = err.errors.map((el) => el.message)
+          res.redirect(`/product/${userSession.id}/edit?errors=${err}`)
+          // res.send(err);
+        } else {
+          res.send(err)
+        }
       })
   }
 
   static listEmpty(req, res) {
-    const userSession = req.session.user;
-    const { search } = req.query;
+    const userSession = req.session.user
+    const { search } = req.query
     let option = {
       include: [User, Category],
       where: {
@@ -208,12 +242,12 @@ class Controller {
     }
     Product.findAll(option)
       .then((result) => {
-        res.render("listEmpty", { products: result, userSession });
+        res.render('listEmpty', { products: result, userSession })
       })
       .catch((err) => {
-        res.send(err);
-      });
+        res.send(err)
+      })
   }
 }
 
-module.exports = Controller;
+module.exports = Controller

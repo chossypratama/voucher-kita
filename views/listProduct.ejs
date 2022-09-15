@@ -4,26 +4,29 @@
   <body>
     <%- include('components/header', { userSession:userSession }) %>
 
-    <div class="text-center fs-1 mb-3">
-      LIST PRODUCT <%= userSession.username %>
-    </div>
+    <div class="container mt-4 mb-4">
 
-    <div class="container">
-      <a class="btn btn-success" href="/product/<%= userSession.id %>/add"
-        >ADD PRODUCT</a
-      >
+      <div class="text-center fs-1 mb-3">
+        LIST PRODUCT <%= userSession.username %>
+      </div>
+
+      <div class="mb-3">
+        <a class="btn btn-success" href="/product/<%= userSession.id %>/add">ADD PRODUCT</a>
+      </div>
 
       <form action="/product/<%= userSession.id %>" method="get">
-        <input type="text" name="search" placeholder="search name product" />
-        <input type="submit" value="search" />
+        <div class="input-group mb-4">
+          <input type="text" name="search" class="form-control" placeholder="Search name/description">
+          <button class="btn btn-small btn-outline-primary" type="submit">Search</button>
+        </div>
       </form>
 
-      <div>
-        Sort by :
-        <a href="/product/<%= userSession.id %>?sortBy=name">Name</a>
-        <a href="/product/<%= userSession.id %>?sortBy=price">Price</a>
-        <a href="/product/<%= userSession.id %>?sortBy=stock">Stock</a>
-      </div>
+        <div>Sort by :</div>
+        <div class="btn-group mb-3">
+          <a href="/product/<%= userSession.id %>?sortBy=name" class="btn btn-outline-primary">Name</a>
+          <a href="/product/<%= userSession.id %>?sortBy=price" class="btn btn-outline-primary">Price</a>
+          <a href="/product/<%= userSession.id %>?sortBy=stock" class="btn btn-outline-primary">Stock</a>
+        </div>
 
       <div>
         <a
