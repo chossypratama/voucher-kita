@@ -1,23 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+  <%- include('auth-pages/partials/header') %>
   <body>
-    <center><h1>ADD PRODUCT</h1></center>
+    <div class="container mt-5">
+      <div class="text-center fs-1 mb-3">ADD YOUR PRODUCT</div>
 
-    <form action="/add" method="post">
-      <p>
-        Name Product <br />
-        <input type="text" name="name" />
-      </p>
-      <p>
-        Description <br />
-        <textarea name="description"></textarea>
-      </p>
-    </form>
+      <form action="/product/add" method="post">
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Product Name</label>
+          <input type="text" class="form-control" name="name" required />
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Description</label>
+          <textarea class="form-control" name="description" required></textarea>
+          <small class="text-muted">*Required</small>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Price</label>
+          <input type="text" class="form-control" name="price" required />
+          <small class="text-muted">*Required</small>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Image Url</label>
+          <input type="text" class="form-control" name="imageUrl" />
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Stock</label>
+          <input type="number" class="form-control" name="stock" />
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Category</label>
+          <select class="form-control" name="CategoryId">
+            <option class="grey-text" selected disabled>
+              ---Please select your Category---
+            </option>
+            <% categories.forEach(el=>{%>
+            <option value="<%= el.id %>"><%= el.name %></option>
+            <% }) %>
+          </select>
+          <small class="text-muted">*Required</small>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Product</button>
+      </form>
+    </div>
   </body>
 </html>

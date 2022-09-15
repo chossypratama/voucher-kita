@@ -2,7 +2,7 @@ const { response } = require('express')
 const { User, UserProfile } = require('../models')
 const bcrypt = require('bcryptjs')
 
-class UserController {
+class UserControllers {
   static registerForm(req, res) {
     res.render('auth-pages/register-form.ejs')
   }
@@ -57,4 +57,4 @@ class UserController {
   }
 }
 
-module.exports = UserController
+module.exports = UserControllers
