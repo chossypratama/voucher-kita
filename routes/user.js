@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const ProductController = require("../controllers/ProductControllers");
 const UserController = require("../controllers/UserController");
 
 // GET Register
@@ -12,8 +11,5 @@ router.post("/register", UserController.postRegister);
 router.get("/login", UserController.loginForm);
 // POST Register
 router.post("/login", UserController.postLogin);
-
-router.get("/product/add", ProductController.formAdd);
-router.post("/product/add", ProductController.createProduct);
 
 module.exports = router;
