@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('auth-pages/partials/header') %>
+  <%- include('auth-pages/partials/header') %>
 
   <body>
-
     <%- include('components/header', { userSession:userSession }) %>
 
     <div class="container mt-5">
-
       <form action="/" method="get">
         <div class="d-flex mb-4">
-          <input type="text" name="search" class="form-control" placeholder="Search name/description">
-          <button class="btn btn-small btn-outline-primary" type="submit">Search</button>
+          <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search name/description"
+          />
+          <button class="btn btn-small btn-outline-primary" type="submit">
+            Search
+          </button>
         </div>
       </form>
 
       <div class="row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3">
         <% products.forEach(element=> { %>
-          <div class="col">
-            <div class="card shadow-sm">
-              <img width="100%" height="225" src=<%=element.imageUrl %>>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img width="100%" height="225" src="<%" ="element.imageUrl%" />>
 
-              <div class="card-body">
-                <p class="fs-5">
-                  <%= element.name %>
-                </p>
-                <p class="card-text text-wrap">
-                  <%= element.description %>
-                </p>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Buy</button>
-              </div>
+            <div class="card-body">
+              <p class="fs-5"><%= element.name %></p>
+              <p class="card-text text-wrap"><%= element.description %></p>
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                Buy
+              </button>
             </div>
           </div>
-          <% }) %>
+        </div>
+        <% }) %>
       </div>
-
     </div>
   </body>
-
 </html>

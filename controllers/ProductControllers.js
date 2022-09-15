@@ -1,37 +1,42 @@
 const { Op } = require("sequelize");
 const { User, UserProfile, Product, Category } = require("../models");
 
-
 class Controller {
   static home(req, res) {
-    const userSession = req.session.user
-    const { search, sort, param, isLogout } = req.query
+    const userSession = req.session.user;
+    const { search, sort, param, isLogout } = req.query;
 
     Product.findAll({ include: Category, User })
       .then((products) => {
-        // res.send(products)
-        res.render('home.ejs', { products, userSession })
+        // res.send(products);
+        res.render("home.ejs", { products, userSession });
       })
       .catch((err) => {
-        res.send(err)
-      })
+        res.send(err);
+      });
   }
 
   static formAdd(req, res) {
+    // const { errors } = req.query;
+    const userSession = req.session.user;
     Category.findAll()
       .then((result) => {
-        res.render('formAddProduct', { categories: result })
+        // res.send(userSession);
+        res.render("formAddProduct", {
+          categories: result,
+          userSession,
+        });
       })
       .catch((err) => {
-        res.send(err)
-      })
+        res.send(err);
+      });
   }
 
   static createProduct(req, res) {
-  
+    const userSession = req.session.user;
     const { name, description, price, imageUrl, stock, CategoryId } = req.body;
     let UserId = req.params.userId;
-    
+
     Product.create({
       name,
       description,
@@ -42,15 +47,21 @@ class Controller {
       UserId,
     })
       .then(() => {
-
         res.redirect(`/product/${UserId}`);
       })
       .catch((err) => {
+        // if (err.name == "SequelizeValidationError") {
+        //   err = err.errors.map((el) => el.message);
+        //   // res.redirect(`/product/${userSession.id}/add?errors=${err}`);
+        //   res.send(err);
+        // } else {
         res.send(err);
+        // }
       });
   }
 
   static listProduct(req, res) {
+    const userSession = req.session.user;
     const { search, sortBy } = req.query;
     let option = {
       include: [User, Category],
@@ -77,7 +88,8 @@ class Controller {
     }
     Product.findAll(option)
       .then((result) => {
-        res.render("listProduct", { products: result });
+        // res.send(userSession);
+        res.render("listProduct", { products: result, userSession });
       })
       .catch((err) => {
         res.send(err);
@@ -99,6 +111,7 @@ class Controller {
   }
 
   static formEditProduct(req, res) {
+    const userSession = req.session.user;
     let product;
     Product.findByPk(+req.params.productId, {
       include: Category,
@@ -108,7 +121,11 @@ class Controller {
         return Category.findAll();
       })
       .then((result) => {
-        res.render("formEditProduct", { category: result, product });
+        res.render("formEditProduct", {
+          category: result,
+          product,
+          userSession,
+        });
       })
       .catch((err) => {
         res.send(err);
@@ -134,6 +151,7 @@ class Controller {
   }
 
   static listEmpty(req, res) {
+    const userSession = req.session.user;
     const { search } = req.query;
     let option = {
       include: [User, Category],
@@ -153,13 +171,12 @@ class Controller {
     }
     Product.findAll(option)
       .then((result) => {
-        res.render("listEmpty", { products: result });
-
+        res.render("listEmpty", { products: result, userSession });
       })
       .catch((err) => {
-        res.send(err)
-      })
+        res.send(err);
+      });
   }
 }
 
-module.exports = Controller
+module.exports = Controller;

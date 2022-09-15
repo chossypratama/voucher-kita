@@ -2,31 +2,33 @@
 <html lang="en">
   <%- include('auth-pages/partials/header') %>
   <body>
+    <%- include('components/header', { userSession:userSession }) %>
+
     <div class="text-center fs-1 mb-3">
-      LIST PRODUCT <%= products[0].User.username %>
+      LIST PRODUCT <%= userSession.username %>
     </div>
 
     <div class="container">
-      <a class="btn btn-success" href="/product/<%= products[0].UserId %>/add"
+      <a class="btn btn-success" href="/product/<%= userSession.id %>/add"
         >ADD PRODUCT</a
       >
 
-      <form action="/product/<%= products[0].UserId %>" method="get">
+      <form action="/product/<%= userSession.id %>" method="get">
         <input type="text" name="search" placeholder="search name product" />
         <input type="submit" value="search" />
       </form>
 
       <div>
         Sort by :
-        <a href="/product/<%= products[0].UserId %>?sortBy=name">Name</a>
-        <a href="/product/<%= products[0].UserId %>?sortBy=price">Price</a>
-        <a href="/product/<%= products[0].UserId %>?sortBy=stock">Stock</a>
+        <a href="/product/<%= userSession.id %>?sortBy=name">Name</a>
+        <a href="/product/<%= userSession.id %>?sortBy=price">Price</a>
+        <a href="/product/<%= userSession.id %>?sortBy=stock">Stock</a>
       </div>
 
       <div>
         <a
           class="btn btn-danger"
-          href="/product/<%= products[0].UserId %>/emptyStock"
+          href="/product/<%= userSession.id %>/emptyStock"
           >EMPTY STOCK</a
         >
       </div>
@@ -52,11 +54,13 @@
             <td>
               <a
                 class="btn btn-success me-5"
-                href="/product/8/edit/<%= el.id %>"
+                href="/product/<%= userSession.id %>/edit/<%= el.id %>"
                 >EDIT</a
               >
 
-              <a class="btn btn-danger" href="/product/8/delete/<%= el.id %>"
+              <a
+                class="btn btn-danger"
+                href="/product/<%= userSession.id %>/delete/<%= el.id %>"
                 >DELETE</a
               >
             </td>

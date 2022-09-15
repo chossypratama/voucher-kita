@@ -28,13 +28,80 @@ module.exports = (sequelize, DataTypes) => {
   }
   Product.init(
     {
-      name: DataTypes.STRING,
-      description: DataTypes.STRING,
-      price: DataTypes.INTEGER,
-      stock: DataTypes.INTEGER,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Please enter your name product",
+          },
+          notNull: {
+            msg: "Please enter your name product",
+          },
+          len: {
+            args: [5, 30],
+            msg: "min caracter name product between 5 and 30",
+          },
+        },
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Please enter your product description",
+          },
+          notNull: {
+            msg: "Please enter your product description",
+          },
+        },
+      },
+      price: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Please enter your price",
+          },
+          notNull: {
+            msg: "Please enter your price",
+          },
+        },
+      },
+      stock: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Please enter your stock",
+          },
+          notNull: {
+            msg: "Please enter your stock",
+          },
+        },
+      },
       UserId: DataTypes.INTEGER,
-      CategoryId: DataTypes.INTEGER,
-      imageUrl: DataTypes.STRING,
+      CategoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Please choose category",
+          },
+        },
+      },
+      imageUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Please enter your image",
+          },
+          notNull: {
+            msg: "Please enter your image",
+          },
+        },
+      },
     },
     {
       sequelize,
