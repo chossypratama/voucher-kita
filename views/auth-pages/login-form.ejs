@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/header') %>
+  <%- include('/partials/header') %>
 
   <body>
-
     <div class="container mt-5">
-
       <% if(afterRegister) { %>
-        <div class="text-center fs-1 mb-3">
-          Anda telah terdaftar! Silahkan login sekarang!
-        </div>
+      <div class="text-center fs-1 mb-3">
+        Anda telah terdaftar! Silahkan login sekarang!
+      </div>
       <% }else{ %>
-        <div class="text-center fs-1 mb-3">
-        Hai! Selamat Datang Kembali!
-        </div>
-      <% } %>
-
-      <% if(invalid) { %>
-        <div class="text-center alert alert-danger"> 
-          Email/Password salah silahkan coba lagi
-        </div>
+      <div class="text-center fs-1 mb-3">Hai! Selamat Datang Kembali!</div>
+      <% } %> <% if(invalid) { %>
+      <div class="text-center alert alert-danger">
+        Email/Password salah silahkan coba lagi
+      </div>
       <% } %>
 
       <form action="/login" method="post">
         <div class="mb-3 form-group">
           <label for="" class="form-label">Email</label>
-          <input type="text" class="form-control" name="email" placeholder="example@gmail.com" required>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            placeholder="example@gmail.com"
+            required
+          />
           <small class="text-muted">*Required</small>
         </div>
         <div class="mb-3 form-group">
           <label for="" class="form-label">Password</label>
-          <input type="text" class="form-control" name="password" required>
+          <input type="text" class="form-control" name="password" required />
           <small class="text-muted">*Required</small>
         </div>
 
         <button class="btn btn-primary" type="submit">Login</button>
       </form>
     </div>
-
   </body>
-
 </html>
