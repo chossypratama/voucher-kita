@@ -16,9 +16,9 @@
       </div>
       <% } else { %>
       <div class="text-end">
-        <div class="btn text-white bg-dark">
+        <a href="/profile" class="btn text-white bg-dark">
           Halo, <%= userSession.username %>!
-        </div>
+       </a>
         <% if(userSession.role == 'seller') { %>
           <a href="/product/<%= userSession.id %>" class="btn btn-outline-light me-2">Manage Product</a>
         <% } %>

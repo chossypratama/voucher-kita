@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('auth-pages/partials/header') %>
+<body>
+    <%- include('components/header', { userSession:userSession }) %>
+    
+    <div class="container mt-5">
+        <div class="text-center fs-1 mb-3">YOUR PROFILE</div>
+    
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Email : <%= user.email %> </li>
+            <li class="list-group-item">Role : <%= user.role %> </li>
+            <li class="list-group-item">Gender : <%= user.UserProfile.gender %>  </li>
+            <li class="list-group-item"> Phone Number : <%= user.UserProfile.phoneNumber %>  </li>
+            <li class="list-group-item">Age : <%= user.UserProfile.age %></li>
+            <li class="list-group-item"></li>
+        </ul>
+
+    </div>
+</body>
+</html>

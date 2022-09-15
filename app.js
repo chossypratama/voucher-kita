@@ -45,6 +45,7 @@ app.get('/logout', UserControllers.getLogout)
 // Middleware validate role = seller
 app.use(isSeller)
 // route berhubungan dengan penjual/seller
+app.get('/profile',UserControllers.profile)
 
 // Seller Product Controller
 app.use(product)

@@ -86,6 +86,19 @@ class UserControllers {
       }
     })
   }
+
+  static profile(req,res){
+    const userSession = req.session.user;
+      User.findByPk(+userSession.id,{
+        include:UserProfile
+      })
+      .then(result=>{
+        res.render('profile',{user:result ,userSession})
+      })
+      .catch((err) => {
+        res.send(err)
+      })
+  }
 }
 
 module.exports = UserControllers
