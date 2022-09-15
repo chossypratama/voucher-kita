@@ -69,13 +69,11 @@ class Controller {
   }
 
   static createProduct(req, res) {
-    if (!req.file) {
-      const err = new Error('Image Harus Di Upload')
-      err.errorStatus = 422
-      throw err
-    }
-
     const userSession = req.session.user
+    if (!req.file) {
+      const err = 'Image Harus Di Upload'
+      res.redirect(`/product/${userSession.id}/add?errors=${err}`)
+    }
     const { name, description, price, stock, CategoryId } = req.body
     const { path } = req.file
 
@@ -189,13 +187,11 @@ class Controller {
   }
 
   static updateProduct(req, res) {
-    if (!req.file) {
-      const err = new Error('Image Harus Di Upload')
-      err.errorStatus = 422
-      throw err
-    }
-
     const userSession = req.session.user
+    if (!req.file) {
+      const err = 'Image Harus Di Upload'
+      res.redirect(`/product/${userSession.id}/edit?errors=${err}`)
+    }
     const { name, description, price, stock, CategoryId } = req.body
     const { path } = req.file
 
