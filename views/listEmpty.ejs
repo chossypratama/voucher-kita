@@ -6,11 +6,12 @@
     <%- include('components/header', { userSession:userSession }) %>
 
     <div class="text-center fs-1 mb-3">
-      LIST EMPTY PRODUCT <%= products[0].User.username %>
+      LIST EMPTY PRODUCT <%= userSession.username %>
     </div>
 
     <div class="container">
-      <form action="/product/<%= products[0].UserId %>/emptyStock" method="get">
+      <a href="/product/<%= userSession.id %>">BACK</a>
+      <form action="/product/<%= userSession.id %>/emptyStock" method="get">
         <input type="text" name="search" placeholder="search name product" />
         <input type="submit" value="search" />
       </form>
@@ -37,11 +38,13 @@
             <td>
               <a
                 class="btn btn-success me-5"
-                href="/product/8/edit/<%= el.id %>"
+                href="/product/<%= userSession.id %>/edit/<%= el.id %>"
                 >EDIT</a
               >
 
-              <a class="btn btn-danger" href="/product/8/delete/<%= el.id %>"
+              <a
+                class="btn btn-danger"
+                href="/product/<%= userSession.id %>/delete/<%= el.id %>"
                 >DELETE</a
               >
             </td>

@@ -1,18 +1,18 @@
 const isLogin = (req, res, next) => {
   if (!req.session.user) {
-    res.redirect('/login?sessionNotFound=true')
+    res.redirect("/login?sessionNotFound=true");
   } else {
-    next()
+    next();
   }
-}
+};
 
 const isSeller = (req, res, next) => {
   console.log(req.session)
   if (req.session.user.role != 'seller') {
     res.redirect('/')
   } else {
-    next()
+    next();
   }
-}
+};
 
-module.exports = { isLogin, isSeller }
+module.exports = { isLogin, isSeller };

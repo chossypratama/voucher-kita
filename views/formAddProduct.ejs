@@ -7,20 +7,26 @@
 
     <div class="container mt-5">
       <div class="text-center fs-1 mb-3">ADD YOUR PRODUCT</div>
-
-      <form action="/product/8/add" method="post">
+         
+      <% if (errors) { %>
+        <div class="alert alert-danger"> <% errors.split(',').forEach(el=>{%>
+          <li><%= el %> </li>
+       <%}) %></div>
+           
+          <% } %>
+      <form action="/product/<%= userSession.id %>/add" method="post">
         <div class="mb-3 form-group">
           <label for="" class="form-label">Product Name</label>
-          <input type="text" class="form-control" name="name" required />
+          <input type="text" class="form-control" name="name" />
         </div>
         <div class="mb-3 form-group">
           <label for="" class="form-label">Description</label>
-          <textarea class="form-control" name="description" required></textarea>
+          <textarea class="form-control" name="description"></textarea>
           <small class="text-muted">*Required</small>
         </div>
         <div class="mb-3 form-group">
           <label for="" class="form-label">Price</label>
-          <input type="text" class="form-control" name="price" required />
+          <input type="text" class="form-control" name="price" />
           <small class="text-muted">*Required</small>
         </div>
         <div class="mb-3 form-group">
@@ -44,6 +50,9 @@
           <small class="text-muted">*Required</small>
         </div>
         <button class="btn btn-primary" type="submit">Add Product</button>
+        <a class="btn btn-danger" href="/product/<%= userSession.id %>"
+          >CANCEL</a
+        >
       </form>
     </div>
   </body>

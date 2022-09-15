@@ -8,7 +8,7 @@
     <div class="container mt-5">
       <div class="text-center fs-1 mb-3">EDIT YOUR PRODUCT</div>
 
-      <form action="/product/8/edit/<%= product.id %>" method="post">
+      <form action="/product/<%= userSession.id %>/edit/<%= product.id %>" method="post">
         <div class="mb-3 form-group">
           <label for="" class="form-label">Product Name</label>
           <input
@@ -51,6 +51,9 @@
   
         </div>
         <button class="btn btn-primary" type="submit">Edit Product</button>
+        <a class="btn btn-danger" href="/product/<%= userSession.id %>"
+            >CANCEL</a
+          >
       </form>
     </div>
   </body>
