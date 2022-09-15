@@ -2,7 +2,7 @@
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <div class="nav col-lg-auto me-lg-auto justify-content-center mb-md-0">
-        <a href="/" class="fs-2 white-text">
+        <a href="/" class="fs-2 text-decoration-none text-white">
           Voucher Kita
         </a>
       </div>
@@ -16,7 +16,7 @@
         <div class="text-end">
           <div class="btn text-white bg-dark">Halo, <%= userSession.username %>! </div>
           <% if(userSession.role == 'seller') { %> 
-            <a href="/products/<%= userSession.id %>" class="btn btn-outline-light me-2">Manage Product</a>
+            <a href="/product/<%= userSession.id %>" class="btn btn-outline-light me-2">Manage Product</a>
           <% } %> 
           <a href="/logout" class="btn btn-warning">Logout</a>
         </div>

@@ -2,6 +2,9 @@
 <html lang="en">
   <%- include('auth-pages/partials/header') %>
   <body>
+
+    <%- include('components/header', { userSession:userSession }) %>
+
     <div class="text-center fs-1 mb-3">
       LIST EMPTY PRODUCT <%= products[0].User.username %>
     </div>
