@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('auth-pages/partials/header') %>
+  <body>
+    <div class="text-center fs-1 mb-3">
+      LIST EMPTY PRODUCT <%= products[0].User.username %>
+    </div>
+
+    <div class="container">
+      <form action="/product/<%= products[0].UserId %>/emptyStock" method="get">
+        <input type="text" name="search" placeholder="search name product" />
+        <input type="submit" value="search" />
+      </form>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>NO</th>
+            <th>Name Product</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Category</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% products.forEach((el,index)=>{%>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= el.name %></td>
+            <td><%= el.priceRupiah() %></td>
+            <td><%= el.stock %></td>
+            <td><%= el.Category.name %></td>
+            <td>
+              <a
+                class="btn btn-success me-5"
+                href="/product/8/edit/<%= el.id %>"
+                >EDIT</a
+              >
+
+              <a class="btn btn-danger" href="/product/8/delete/<%= el.id %>"
+                >DELETE</a
+              >
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

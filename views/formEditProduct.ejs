@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('auth-pages/partials/header') %>
+  <body>
+    <div class="container mt-5">
+      <div class="text-center fs-1 mb-3">EDIT YOUR PRODUCT</div>
+
+      <form action="/product/8/edit/<%= product.id %>" method="post">
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            value="<%= product.name %>"
+          />
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Description</label>
+          <textarea class="form-control" name="description"> <%= product.description %></textarea>
+          
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Price</label>
+          <input type="text" class="form-control" name="price" value="<%= product.price %>"/>
+         
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Image Url</label>
+          <input type="text" class="form-control" name="imageUrl" value="<%= product.imageUrl %>" />
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Stock</label>
+          <input type="number" class="form-control" name="stock"  value="<%= product.stock %>"/>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="" class="form-label">Category</label>
+          <select class="form-control" name="CategoryId">
+            </option>
+            <% category.forEach(el=>{%>
+                <% if (el.id==product.CategoryId) { %>
+            <option value="<%= el.id %>" selected><%= el.name %></option>
+                <% } else {%>
+                    <option value="<%= el.id %>"><%= el.name %></option>
+              <%  }%>
+            <% }) %>
+          </select>
+  
+        </div>
+        <button class="btn btn-primary" type="submit">Edit Product</button>
+      </form>
+    </div>
+  </body>
+</html>
