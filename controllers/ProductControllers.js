@@ -1,20 +1,34 @@
 const { Op } = require("sequelize");
 const { User, UserProfile, Product, Category } = require("../models");
 
+
 class Controller {
+  static findAllProducts(req, res) {
+    Product.findAll({ include: Category, User })
+      .then((products) => {
+        res.send(products)
+        // res.render('home.ejs', { products })
+      })
+      .catch((err) => {
+        res.send(err)
+      })
+  }
+
   static formAdd(req, res) {
     Category.findAll()
       .then((result) => {
-        res.render("formAddProduct", { categories: result });
+        res.render('formAddProduct', { categories: result })
       })
       .catch((err) => {
-        res.send(err);
-      });
+        res.send(err)
+      })
   }
 
   static createProduct(req, res) {
+  
     const { name, description, price, imageUrl, stock, CategoryId } = req.body;
     let UserId = req.params.userId;
+    
     Product.create({
       name,
       description,
@@ -25,6 +39,7 @@ class Controller {
       UserId,
     })
       .then(() => {
+
         res.redirect(`/product/${UserId}`);
       })
       .catch((err) => {
@@ -136,11 +151,12 @@ class Controller {
     Product.findAll(option)
       .then((result) => {
         res.render("listEmpty", { products: result });
+
       })
       .catch((err) => {
-        res.send(err);
-      });
+        res.send(err)
+      })
   }
 }
 
-module.exports = Controller;
+module.exports = Controller

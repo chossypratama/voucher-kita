@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('/partials/header') %>
+  <%- include('partials/header') %>
 
   <body>
     <div class="container mt-5">
@@ -14,6 +14,12 @@
       <div class="text-center alert alert-danger">
         Email/Password salah silahkan coba lagi
       </div>
+      <% } %>
+
+      <% if(sessionNotFound) { %>
+        <div class="text-center alert alert-warning"> 
+          Silahkan login sebelum melanjutkan!
+        </div>
       <% } %>
 
       <form action="/login" method="post">
