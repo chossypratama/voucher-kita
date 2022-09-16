@@ -1,20 +1,20 @@
 {
   "development": {
     "username": "postgres",
-    "password": "KotaBandung",
+    "password": "postgres",
     "database": "VoucherKitaDB",
     "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
-    "use_env_variable":"DATABASE_URL",
+    "username": "DATABASE_URL",
     "ssl": true,
-    "dialect":"postgres",
-    "protocol":"postgres",
-    "dialectOptions":{
-      "ssl":{
-        "require":true,
-        "rejectUnauthorized":false
+    "dialect": "postgres",
+    "protocol": "postgres",
+    "dialectOptions": {
+      "ssl" : {
+        "require": true,
+        "rejectUnauthorized": false
       }
     }
   }

@@ -38,8 +38,11 @@ app.use(auth)
 
 // Middleware validate user login and role
 app.use(isLogin)
-// router berhubungan dengan pembeli/buyer
+// router berhubungan dengan buyer/seller
+
+// Profile can be accessed by buyer and seller
 app.get('/profile',UserControllers.profile)
+
 // Buy product
 app.use('/buy/:productId', Controller.buyProduct)
 
@@ -48,11 +51,11 @@ app.get('/logout', UserControllers.getLogout)
 
 // Middleware validate role = seller
 app.use(isSeller)
-// route berhubungan dengan penjual/seller
-
+// route berhubungan dengan seller
 
 // Seller Product Controller
 app.use(product)
+
 
 app.listen(port, () => {
   console.log(`Listening to http://localhost:${port}`)
