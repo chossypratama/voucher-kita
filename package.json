@@ -30,5 +30,9 @@
   "devDependencies": {
     "sequelize-cli": "^6.4.1"
   },
-  "keywords": []
+  "keywords": [],
+  "engines": {
+    "node": "16.7.x",
+    "npm": "8.12.x"
+  }
 }
