@@ -20,10 +20,8 @@ module.exports = (sequelize, DataTypes) => {
 
     static scopeZeroStock() {
       return {
-        stock: {
           [Op.eq]: 0,
-        },
-      };
+        }
     }
   }
   Product.init(

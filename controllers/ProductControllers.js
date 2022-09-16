@@ -232,7 +232,7 @@ class Controller {
       },
       order: [['updatedAt', 'DESC']],
     }
-    option.where = Product.scopeZeroStock()
+    option.where.stock = Product.scopeZeroStock()
     if (search) {
       option.where.name = {
         [Op.iLike]: `%${search}%`,
